@@ -10,15 +10,15 @@ void initGame(short type) {
     switch (type) {
         case STATE_GAME_PVE_EASY:
             game_state = type;
-            algorithm_depth = 0;
+            algorithm_depth = DIFF_EASY;
             break;
         case STATE_GAME_PVE_MED:
             game_state = type;
-            algorithm_depth = 4;
+            algorithm_depth = DIFF_MEDIUM;
             break;
         case STATE_GAME_PVE_HARD:
             game_state = type;
-            algorithm_depth = 9;
+            algorithm_depth = DIFF_HARD;
             break;
         case STATE_GAME_PVP:
             game_state = type;
@@ -30,6 +30,12 @@ void initGame(short type) {
     resetTurn();
 }
 
+/**
+ * Aggiorna il flag di stato del gioco tramite gli argomenti passati
+ * @param team Il valore del team che deve muovere il prossimo turno
+ * @param canMove Un boolean-like per rappresentare se quel team ha possibilita' di muovere o meno
+ * @return - Lo stato aggiornato del gioco
+ */
 short updateState(short team, short canMove){
     if(game_state>=10 && game_state<=13){
         if(team==USR_TEAM){
